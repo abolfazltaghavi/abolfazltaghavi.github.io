@@ -22,7 +22,7 @@
       --shadow: 0 14px 40px rgba(17,24,39,.08);
       --radius: 18px;
       --link: #1f4dd8;
-      --maxw: 1280px; /* increased to make main content wider */
+      --maxw: 1280px;
     }
 
     *{ box-sizing:border-box; }
@@ -49,7 +49,7 @@
 
     .grid{
       display:grid;
-      grid-template-columns: 340px 1fr; /* keep sidebar width, main expands with max width */
+      grid-template-columns: 340px 1fr;
       gap: 22px;
       align-items:start;
     }
@@ -185,7 +185,7 @@
       text-transform: uppercase;
       color: var(--faint);
       margin: 0 0 12px;
-      font-weight: 800; /* bold section titles */
+      font-weight: 800;
     }
 
     .p{
@@ -195,49 +195,71 @@
     }
     .muted{ color: var(--muted); }
 
-    /* News */
-    .news{
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-    .newsItem{
-      display:grid;
-      grid-template-columns: 130px 1fr; /* more space for dates */
-      gap: 12px;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.78);
-    }
-    @media (max-width: 520px){
-      .newsItem{ grid-template-columns: 1fr; }
-    }
-    .date{
-      font-size: 13px;
-      color: var(--faint);
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .newsText{
-      font-size: 14.9px;
-      color: var(--text);
-    }
-    .newsText .sub{
-      display:block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 13.8px;
-    }
-
-    /* Research bullets (CV-style) */
-    .researchList{
+    /* Bullets (News + Publication extras) */
+    .bullets{
       margin: 0;
       padding-left: 18px;
       font-size: 15.2px;
     }
-    .researchList li{ margin: 10px 0; }
-    .researchList em{ color: var(--muted); font-style: normal; }
+    .bullets li{ margin: 8px 0; }
+    .bullets .when{
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Publications */
+    .pubList{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+    .pubItem{
+      padding-top: 2px;
+    }
+    .pubTitle{
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 1.35;
+      margin: 0 0 4px;
+    }
+    .pubAuthors{
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 14.6px;
+    }
+    .pubDesc{
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--text);
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,77,216,.18);
+      background: rgba(31,77,216,.06);
+      color: rgba(17,24,39,.92);
+      font-size: 12.8px;
+      font-weight: 800;
+      letter-spacing: .01em;
+      vertical-align: middle;
+      margin-left: 8px;
+      white-space: nowrap;
+    }
+    .tag strong{ font-weight: 900; }
+    .tag .venue{ color: rgba(17,24,39,.78); font-weight: 800; }
+
+    .pubLinks{
+      font-size: 14.4px;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    .pubLinks a{ font-weight: 700; }
 
     /* Footer */
     .footer{
@@ -260,7 +282,6 @@
 
       <!-- LEFT SIDEBAR -->
       <aside class="card sidebar" aria-label="Sidebar">
-        <!-- Ensure this file exists exactly at assets/profile.jpg -->
         <img class="photo" src="assets/profile.jpg" alt="Abolfazl Taghavi headshot" />
 
         <div class="name">Abolfazl Taghavi</div>
@@ -274,31 +295,31 @@
         <nav class="nav" aria-label="Page navigation">
           <a href="#about">About</a>
           <a href="#news">News</a>
-          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
           <a href="#contact">Contact</a>
           <a class="cvlink" href="Abolfazl_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
         </nav>
 
         <div class="icons" aria-label="Links">
-          <!-- Replace the href values with your real links -->
-          <a class="iconLink" href="#" target="_blank" rel="noopener" aria-label="Google Scholar">
-            <!-- simple graduation cap icon -->
+          <!-- Google Scholar -->
+          <a class="iconLink" href="https://scholar.google.com/citations?user=DlNroigAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 3 1 8l11 5 9-4.09V17h2V8L12 3zm0 12L3 10.91V14c0 2.76 4.03 5 9 5s9-2.24 9-5v-3.09L12 15z"/>
             </svg>
           </a>
 
-          <a class="iconLink" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <!-- linkedin icon -->
+          <!-- LinkedIn -->
+          <a class="iconLink" href="https://www.linkedin.com/in/abolfazl-taghavi-51929a188" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 23h5V7H0v16zM8 7h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6C22.4 6.6 24 9 24 13.3V23h-5v-8.2c0-1.96-.03-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.33V23H8V7z"/>
             </svg>
           </a>
 
-          <a class="iconLink" href="#" target="_blank" rel="noopener" aria-label="ORCID">
-            <!-- orcid-like icon -->
+          <!-- ORCID (improved icon) -->
+          <a class="iconLink" href="https://orcid.org/0000-0002-0770-2297" target="_blank" rel="noopener" aria-label="ORCID">
+            <!-- SimpleIcons-style ORCID glyph -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-6.5 6.7c.9 0 1.63.73 1.63 1.63S6.4 9.96 5.5 9.96s-1.63-.73-1.63-1.63.73-1.63 1.63-1.63zM6.9 18.2H4.1V10.9h2.8v7.3zM12.4 10.9c2.65 0 4.7 1.53 4.7 4.08 0 2.55-2.05 4.22-4.7 4.22H8.9V10.9h3.5zm0 6.03c1.12 0 1.9-.7 1.9-1.95 0-1.21-.78-1.82-1.9-1.82H11.7v3.77h.7z"/>
+              <path d="M12 0C5.372 0 0 5.372 0 12c0 6.627 5.372 12 12 12 6.627 0 12-5.373 12-12C24 5.372 18.627 0 12 0zm-4.5 5.2c.69 0 1.25.56 1.25 1.25S8.19 7.7 7.5 7.7s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25zM6.5 18.7V9.1h2V18.7h-2zm6.1-9.6c3.08 0 5.4 2 5.4 4.85 0 2.9-2.34 4.75-5.4 4.75H9.8V9.1h2.8zm-.15 7.8c1.9 0 3.25-1.1 3.25-2.95 0-1.9-1.35-2.95-3.25-2.95H11.8v5.9h.65z"/>
             </svg>
           </a>
         </div>
@@ -326,62 +347,77 @@
           </p>
         </section>
 
-        <!-- NEWS -->
+        <!-- NEWS (bullets, no rectangles) -->
         <section id="news" class="section">
           <div class="h2">News</div>
-          <div class="news">
-            <div class="newsItem">
-              <div class="date">Feb 2026</div>
-              <div class="newsText">
-                Scheduled to present at the <strong>Early-Career Sustainable Operations Workshop</strong> (Dallas, TX).
-              </div>
-            </div>
-
-            <div class="newsItem">
-              <div class="date">Mar 23, 2026</div>
-              <div class="newsText">
-                <strong>4th International Smoke Symposium</strong> — Accepted presentation.
-                <span class="sub">
-                  Title: “Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan” · Proposal code: PROYA3Z74CU
-                </span>
-              </div>
-            </div>
-
-            <div class="newsItem">
-              <div class="date">May 7–11, 2026</div>
-              <div class="newsText">
-                <strong>36th Annual POMS Conference</strong> (Reno, NV).
-              </div>
-            </div>
-          </div>
+          <ul class="bullets">
+            <li><span class="when">Feb 2026</span> — I will present at the <strong>Early-Career Sustainable Operations Workshop</strong> (Dallas, TX).</li>
+            <li><span class="when">Mar 23, 2026</span> — <strong>4th International Smoke Symposium</strong>: accepted presentation (“Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan”; proposal code: PROYA3Z74CU).</li>
+            <li><span class="when">May 7–11, 2026</span> — I will attend the <strong>36th Annual POMS Conference</strong> (Reno, NV).</li>
+          </ul>
         </section>
 
-        <!-- RESEARCH -->
-        <section id="research" class="section">
-          <div class="h2">Research</div>
-          <p class="p">
-            I develop optimization and learning methods for operational decisions in high-stakes sustainability settings.
-            Current and recent work includes:
-          </p>
+        <!-- PUBLICATIONS -->
+        <section id="publications" class="section">
+          <div class="h2">Publications</div>
 
-          <ul class="researchList">
-            <li>
-              <strong>Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan</strong>
-              <em> (with A. Fattahi, S. Dasu, R. Ahmadi · under review, Operations Research)</em>
-              — Optimization models for inspection/maintenance planning under uncertainty, with scalable solution methods for large infrastructure networks.
+          <ul class="pubList">
+
+            <!-- Paper 1 -->
+            <li class="pubItem">
+              <div class="pubTitle">
+                Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan
+                <span class="tag"><strong>Under Review</strong> <span class="venue">· Operations Research</span></span>
+              </div>
+
+              <p class="pubAuthors"><em>with</em> A. Fattahi, S. Dasu, R. Ahmadi</p>
+
+              <p class="pubDesc">
+                Optimization models for inspection and maintenance planning under uncertainty, with scalable solution methods for large infrastructure networks.
+              </p>
+
+              <p class="pubLinks">
+                Links: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5369573" target="_blank" rel="noopener">SSRN</a>
+              </p>
+
+              <ul class="bullets">
+                <li>Media coverage: <a href="https://anderson-review.ucla.edu/a-more-effective-way-to-spot-potential-wildfire-origins-in-the-electric-grid/" target="_blank" rel="noopener">UCLA Anderson Review</a></li>
+                <li>Accepted for <strong>Early-Career Sustainable Operations Workshop</strong> (Flash Talk), 2026</li>
+              </ul>
             </li>
 
-            <li>
-              <strong>Fair Dynamic Load Control Scheduling under Stochastic Energy Demand</strong>
-              <em> (with A. Fattahi, S. Dasu, R. Ahmadi · in preparation)</em>
-              — Scheduling frameworks that balance efficiency and fairness across customer groups, while quantifying tradeoffs induced by operational flexibility constraints.
+            <!-- Paper 2 -->
+            <li class="pubItem">
+              <div class="pubTitle">
+                Fair Dynamic Load Control Scheduling under Stochastic Energy Demand
+                <span class="tag"><strong>In Preparation</strong> <span class="venue">· targeting Management Science</span></span>
+              </div>
+
+              <p class="pubAuthors"><em>with</em> A. Fattahi, S. Dasu, R. Ahmadi</p>
+
+              <p class="pubDesc">
+                Scheduling frameworks that balance efficiency and fairness across customer groups, and quantify tradeoffs induced by operational flexibility constraints.
+              </p>
+
+              <!-- bullets can be added later -->
             </li>
 
-            <li>
-              <strong>Learning to Prevent Utility-Caused Wildfires through Sequential Inspection and Maintenance</strong>
-              <em> (with S. Dasu, R. Ahmadi · working paper)</em>
-              — Sequential decision-making with noisy signals and constrained actions; learning-based inspection strategies aimed at reducing catastrophic tail risk over time.
+            <!-- Paper 3 -->
+            <li class="pubItem">
+              <div class="pubTitle">
+                Learning to Prevent Utility-Caused Wildfires through Sequential Inspection and Maintenance
+                <span class="tag"><strong>Working Paper</strong></span>
+              </div>
+
+              <p class="pubAuthors"><em>with</em> S. Dasu, R. Ahmadi</p>
+
+              <p class="pubDesc">
+                Sequential decision-making with noisy signals and constrained actions; learning-based inspection strategies aimed at reducing catastrophic tail risk over time.
+              </p>
+
+              <!-- bullets can be added later -->
             </li>
+
           </ul>
         </section>
 
