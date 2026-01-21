@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en"> 
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Abolfazl Taghavi</title>
-  <meta name="description" content="Abolfazl Taghavi — Ph.D. Candidate in Operations Management at UCLA Anderson. Research in optimization, learning, and energy systems." />
+  <meta name="description" content="Abolfazl Taghavi — Ph.D. Candidate in Operations Management at UCLA Anderson. Research in sustainable operations, energy management, and wildfire mitigation." />
 
-  <!-- Typography (optional but recommended) -->
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -21,19 +21,18 @@
       --border: rgba(17,24,39,.10);
       --shadow: 0 14px 40px rgba(17,24,39,.08);
       --radius: 18px;
-      --accent: #1f4dd8;
-      --accent2:#0ea5e9;
       --link: #1f4dd8;
-      --maxw: 1120px;
+      --maxw: 1280px; /* increased to make main content wider */
     }
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      background: radial-gradient(1200px 500px at 20% -10%, rgba(31,77,216,.10), transparent 60%),
-                  radial-gradient(900px 450px at 90% 10%, rgba(14,165,233,.10), transparent 55%),
-                  var(--bg);
+      background:
+        radial-gradient(1200px 500px at 20% -10%, rgba(31,77,216,.10), transparent 60%),
+        radial-gradient(900px 450px at 90% 10%, rgba(14,165,233,.10), transparent 55%),
+        var(--bg);
       color:var(--text);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       line-height:1.55;
@@ -41,16 +40,16 @@
 
     a{ color:var(--link); text-decoration:none; }
     a:hover{ text-decoration:underline; }
+
     .wrap{
       max-width: var(--maxw);
       margin: 44px auto;
       padding: 0 18px;
     }
 
-    /* Layout */
     .grid{
       display:grid;
-      grid-template-columns: 340px 1fr;
+      grid-template-columns: 340px 1fr; /* keep sidebar width, main expands with max width */
       gap: 22px;
       align-items:start;
     }
@@ -60,7 +59,6 @@
       .sidebar{ position:relative; top:auto; }
     }
 
-    /* Panels */
     .card{
       background: var(--panel);
       border: 1px solid var(--border);
@@ -74,18 +72,6 @@
       top: 20px;
       padding: 22px;
     }
-    .name{
-      font-family: "Source Serif 4", ui-serif, Georgia, serif;
-      font-size: 28px;
-      line-height: 1.12;
-      margin: 14px 0 6px;
-      letter-spacing: -0.02em;
-    }
-    .role{
-      margin:0;
-      color: var(--muted);
-      font-size: 14.5px;
-    }
 
     .photo{
       width: 132px;
@@ -94,6 +80,21 @@
       object-fit: cover;
       border: 1px solid var(--border);
       box-shadow: 0 10px 25px rgba(17,24,39,.10);
+      display:block;
+    }
+
+    .name{
+      font-family: "Source Serif 4", ui-serif, Georgia, serif;
+      font-size: 28px;
+      line-height: 1.12;
+      margin: 14px 0 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .role{
+      margin:0;
+      color: var(--muted);
+      font-size: 14.5px;
     }
 
     .meta{
@@ -104,102 +105,89 @@
       color: var(--muted);
       font-size: 14px;
     }
-    .meta strong{ color: var(--text); font-weight:600; }
+    .meta strong{ color: var(--text); font-weight:700; }
 
+    /* Text nav (not buttons) */
     .nav{
       margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
       display:flex;
       flex-direction:column;
       gap: 10px;
+      font-size: 14.5px;
+    }
+    .nav a{
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav a:hover{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .nav .cvlink{
+      color: var(--link);
+      font-weight: 700;
     }
 
-    .btn{
+    /* Icon links */
+    .icons{
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
       display:flex;
+      gap: 12px;
       align-items:center;
-      justify-content:center;
-      gap:10px;
-      width:100%;
-      padding: 11px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: #fff;
-      font-weight: 600;
-      font-size: 14.5px;
-      cursor:pointer;
-      transition: transform .08s ease, box-shadow .08s ease, border-color .08s ease;
-      user-select:none;
-      text-decoration:none;
-      color: var(--text);
+      flex-wrap: wrap;
     }
-    .btn:hover{
+    .iconLink{
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.9);
+      display:grid;
+      place-items:center;
+      transition: transform .08s ease, box-shadow .08s ease, border-color .08s ease;
+    }
+    .iconLink:hover{
       transform: translateY(-1px);
       border-color: rgba(31,77,216,.25);
       box-shadow: 0 12px 28px rgba(17,24,39,.10);
       text-decoration:none;
     }
-
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(31,77,216,.95), rgba(14,165,233,.92));
-      color:#fff;
-      border: 0;
-    }
-    .btn.primary:hover{ box-shadow: 0 16px 34px rgba(31,77,216,.18); }
-
-    .social{
-      margin-top: 12px;
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .chip{
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--muted);
-      background: rgba(255,255,255,.8);
+    .iconLink svg{
+      width: 18px;
+      height: 18px;
+      fill: #111827;
+      opacity: .85;
     }
 
     /* Main */
-    .main{
-      padding: 26px 26px;
-    }
-    @media (max-width: 980px){
-      .main{ padding: 22px; }
-    }
-
-    .topline{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap: 10px;
-      flex-wrap:wrap;
-      margin-bottom: 8px;
-    }
-    .title{
-      font-family: "Source Serif 4", ui-serif, Georgia, serif;
-      font-size: 30px;
-      margin:0;
-      letter-spacing: -0.02em;
-    }
-    .subtitle{
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
+    .main{ padding: 26px 26px; }
+    @media (max-width: 980px){ .main{ padding: 22px; } }
 
     .section{
-      margin-top: 26px;
+      margin-top: 18px;
       padding-top: 22px;
       border-top: 1px solid var(--border);
     }
+    .section:first-child{
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+
     .h2{
       font-size: 16px;
       letter-spacing:.10em;
       text-transform: uppercase;
       color: var(--faint);
       margin: 0 0 12px;
+      font-weight: 800; /* bold section titles */
     }
+
     .p{
       margin: 0 0 12px;
       color: var(--text);
@@ -215,65 +203,41 @@
     }
     .newsItem{
       display:grid;
-      grid-template-columns: 92px 1fr;
+      grid-template-columns: 130px 1fr; /* more space for dates */
       gap: 12px;
       padding: 12px 12px;
       border-radius: 14px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.78);
+    }
+    @media (max-width: 520px){
+      .newsItem{ grid-template-columns: 1fr; }
     }
     .date{
       font-size: 13px;
       color: var(--faint);
-      font-weight: 600;
+      font-weight: 700;
+      white-space: nowrap;
     }
     .newsText{
-      font-size: 14.8px;
+      font-size: 14.9px;
       color: var(--text);
     }
-
-    /* Research cards */
-    .projects{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    @media (max-width: 860px){
-      .projects{ grid-template-columns: 1fr; }
-    }
-    .proj{
-      padding: 16px 16px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.85);
-    }
-    .tag{
-      display:inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing:.08em;
-      text-transform: uppercase;
-      color: rgba(31,77,216,.95);
-      margin-bottom: 6px;
-    }
-    .projTitle{
-      margin: 0 0 6px;
-      font-size: 16.5px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-    .projMeta{
-      margin: 0 0 8px;
+    .newsText .sub{
+      display:block;
+      margin-top: 4px;
       color: var(--muted);
       font-size: 13.8px;
     }
-    .bullets{
+
+    /* Research bullets (CV-style) */
+    .researchList{
       margin: 0;
       padding-left: 18px;
-      color: var(--text);
-      font-size: 14.6px;
+      font-size: 15.2px;
     }
-    .bullets li{ margin: 6px 0; }
+    .researchList li{ margin: 10px 0; }
+    .researchList em{ color: var(--muted); font-style: normal; }
 
     /* Footer */
     .footer{
@@ -296,54 +260,69 @@
 
       <!-- LEFT SIDEBAR -->
       <aside class="card sidebar" aria-label="Sidebar">
+        <!-- Ensure this file exists exactly at assets/profile.jpg -->
         <img class="photo" src="assets/profile.jpg" alt="Abolfazl Taghavi headshot" />
+
         <div class="name">Abolfazl Taghavi</div>
         <p class="role">Ph.D. Candidate · Operations Management<br/>UCLA Anderson School of Management</p>
 
         <div class="meta">
           <div><strong>Email:</strong> <a href="mailto:abolfazl.taghavi.phd@anderson.ucla.edu">abolfazl.taghavi.phd@anderson.ucla.edu</a></div>
-          <div><strong>Interests:</strong> Optimization · Learning · Energy systems</div>
+          <div><strong>Focus:</strong> Sustainable operations · Energy · Wildfire mitigation</div>
         </div>
 
         <nav class="nav" aria-label="Page navigation">
-          <a class="btn" href="#about">About</a>
-          <a class="btn" href="#news">News</a>
-          <a class="btn" href="#research">Research</a>
-          <a class="btn primary" href="#contact">Contact</a>
-          <!-- Optional CV: upload "Abolfazl_CV.pdf" to repo root -->
-          <a class="btn" href="Abolfazl_CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
+          <a href="#about">About</a>
+          <a href="#news">News</a>
+          <a href="#research">Research</a>
+          <a href="#contact">Contact</a>
+          <a class="cvlink" href="Abolfazl_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
         </nav>
 
-        <div class="social" aria-label="Links">
-          <!-- Replace # with your links -->
-          <span class="chip"><a href="#" target="_blank" rel="noopener">Google Scholar</a></span>
-          <span class="chip"><a href="#" target="_blank" rel="noopener">LinkedIn</a></span>
-          <span class="chip"><a href="#" target="_blank" rel="noopener">ORCID</a></span>
+        <div class="icons" aria-label="Links">
+          <!-- Replace the href values with your real links -->
+          <a class="iconLink" href="#" target="_blank" rel="noopener" aria-label="Google Scholar">
+            <!-- simple graduation cap icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 1 8l11 5 9-4.09V17h2V8L12 3zm0 12L3 10.91V14c0 2.76 4.03 5 9 5s9-2.24 9-5v-3.09L12 15z"/>
+            </svg>
+          </a>
+
+          <a class="iconLink" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <!-- linkedin icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 23h5V7H0v16zM8 7h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6C22.4 6.6 24 9 24 13.3V23h-5v-8.2c0-1.96-.03-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.33V23H8V7z"/>
+            </svg>
+          </a>
+
+          <a class="iconLink" href="#" target="_blank" rel="noopener" aria-label="ORCID">
+            <!-- orcid-like icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-6.5 6.7c.9 0 1.63.73 1.63 1.63S6.4 9.96 5.5 9.96s-1.63-.73-1.63-1.63.73-1.63 1.63-1.63zM6.9 18.2H4.1V10.9h2.8v7.3zM12.4 10.9c2.65 0 4.7 1.53 4.7 4.08 0 2.55-2.05 4.22-4.7 4.22H8.9V10.9h3.5zm0 6.03c1.12 0 1.9-.7 1.9-1.95 0-1.21-.78-1.82-1.9-1.82H11.7v3.77h.7z"/>
+            </svg>
+          </a>
         </div>
       </aside>
 
       <!-- MAIN CONTENT -->
       <main class="card main" aria-label="Main content">
-        <div class="topline">
-          <h1 class="title">Research & Teaching</h1>
-        </div>
-        <p class="subtitle">
-          I build optimization and learning methods for high-stakes operational decisions—especially in energy systems, grid reliability, and risk mitigation.
-        </p>
 
         <!-- ABOUT -->
         <section id="about" class="section">
           <div class="h2">About</div>
           <p class="p">
-            I am a Ph.D. Candidate in Operations Management at UCLA Anderson. My work sits at the intersection of
-            <strong>stochastic optimization</strong> and <strong>learning</strong>, with an emphasis on problems where decisions must be made under uncertainty and limited feedback.
+            I am a fifth-year Ph.D. Candidate in Operations Management at UCLA Anderson School of Management.
+            I received my B.Sc. in Industrial Engineering from Sharif University of Technology.
           </p>
           <p class="p">
-            A recurring theme in my research is designing policies that are not only theoretically principled, but also
-            <strong>implementable at scale</strong>: algorithms that translate cleanly into end-to-end pipelines, and models that remain robust when confronted with real operational constraints.
+            My research focuses on <strong>sustainable operations</strong>, with particular emphasis on
+            <strong>energy management</strong> and <strong>wildfire risk mitigation</strong>.
+            Methodologically, I am interested in large-scale optimization methods for
+            <strong>stochastic optimization</strong> and <strong>reinforcement learning</strong>, especially when
+            decisions must be made under uncertainty and limited feedback.
           </p>
           <p class="p muted">
-            Current focus areas include utility wildfire mitigation, fair and flexible demand response scheduling, and sequential decision-making with uncertainty.
+            You can find my CV here: <a href="Abolfazl_CV.pdf" target="_blank" rel="noopener"><strong>Download CV (PDF)</strong></a>.
           </p>
         </section>
 
@@ -354,7 +333,24 @@
             <div class="newsItem">
               <div class="date">Feb 2026</div>
               <div class="newsText">
-                Scheduled to present at the <strong>Early-Career Sustainable Operations Workshop</strong> in Dallas, TX.
+                Scheduled to present at the <strong>Early-Career Sustainable Operations Workshop</strong> (Dallas, TX).
+              </div>
+            </div>
+
+            <div class="newsItem">
+              <div class="date">Mar 23, 2026</div>
+              <div class="newsText">
+                <strong>4th International Smoke Symposium</strong> — Accepted presentation.
+                <span class="sub">
+                  Title: “Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan” · Proposal code: PROYA3Z74CU
+                </span>
+              </div>
+            </div>
+
+            <div class="newsItem">
+              <div class="date">May 7–11, 2026</div>
+              <div class="newsText">
+                <strong>36th Annual POMS Conference</strong> (Reno, NV).
               </div>
             </div>
           </div>
@@ -364,55 +360,29 @@
         <section id="research" class="section">
           <div class="h2">Research</div>
           <p class="p">
-            I work on methodological questions—how to learn, optimize, and allocate resources under uncertainty—
-            motivated by operational problems where small improvements can meaningfully change outcomes.
-            Below are a few active projects.
+            I develop optimization and learning methods for operational decisions in high-stakes sustainability settings.
+            Current and recent work includes:
           </p>
 
-          <div class="projects">
-            <div class="proj">
-              <div class="tag">Wildfire Mitigation</div>
-              <div class="projTitle">Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan</div>
-              <div class="projMeta">with A. Fattahi, S. Dasu, R. Ahmadi · Under review, <em>Operations Research</em></div>
-              <ul class="bullets">
-                <li>Optimization models for inspection/maintenance prioritization under uncertainty.</li>
-                <li>Scalable solution approach designed for large infrastructure networks.</li>
-                <li>Decision support framing: turning risk estimates into actionable annual plans.</li>
-              </ul>
-            </div>
+          <ul class="researchList">
+            <li>
+              <strong>Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan</strong>
+              <em> (with A. Fattahi, S. Dasu, R. Ahmadi · under review, Operations Research)</em>
+              — Optimization models for inspection/maintenance planning under uncertainty, with scalable solution methods for large infrastructure networks.
+            </li>
 
-            <div class="proj">
-              <div class="tag">Demand Response</div>
-              <div class="projTitle">Fair Dynamic Load Control Scheduling under Stochastic Energy Demand</div>
-              <div class="projMeta">with A. Fattahi, S. Dasu, R. Ahmadi · In preparation</div>
-              <ul class="bullets">
-                <li>Scheduling framework that balances operational efficiency with fairness across customer groups.</li>
-                <li>Models flexibility in admissible call lengths and quantifies performance tradeoffs.</li>
-                <li>Emphasis on tractability and policy interpretability for utility operations.</li>
-              </ul>
-            </div>
+            <li>
+              <strong>Fair Dynamic Load Control Scheduling under Stochastic Energy Demand</strong>
+              <em> (with A. Fattahi, S. Dasu, R. Ahmadi · in preparation)</em>
+              — Scheduling frameworks that balance efficiency and fairness across customer groups, while quantifying tradeoffs induced by operational flexibility constraints.
+            </li>
 
-            <div class="proj">
-              <div class="tag">Learning & Control</div>
-              <div class="projTitle">Learning to Prevent Utility-Caused Wildfires through Sequential Inspection and Maintenance</div>
-              <div class="projMeta">with S. Dasu, R. Ahmadi · Working paper</div>
-              <ul class="bullets">
-                <li>Sequential decision-making with noisy signals and evolving system state.</li>
-                <li>Learning-based inspection to reduce catastrophic tail risk over time.</li>
-                <li>Bridges statistical estimation with operational constraints on maintenance actions.</li>
-              </ul>
-            </div>
-
-            <div class="proj">
-              <div class="tag">Methods</div>
-              <div class="projTitle">Stochastic Optimization & Regret-Aware Policies for Infrastructure Decisions</div>
-              <div class="projMeta">Ongoing</div>
-              <ul class="bullets">
-                <li>Designing policies with explicit guarantees and clear operational interpretations.</li>
-                <li>Focus on robustness, scalability, and measurable gains over common baselines.</li>
-              </ul>
-            </div>
-          </div>
+            <li>
+              <strong>Learning to Prevent Utility-Caused Wildfires through Sequential Inspection and Maintenance</strong>
+              <em> (with S. Dasu, R. Ahmadi · working paper)</em>
+              — Sequential decision-making with noisy signals and constrained actions; learning-based inspection strategies aimed at reducing catastrophic tail risk over time.
+            </li>
+          </ul>
         </section>
 
         <!-- CONTACT -->
@@ -428,13 +398,13 @@
             <div class="muted">Last updated: <span id="d"></span></div>
           </div>
         </section>
+
       </main>
 
     </div>
   </div>
 
   <script>
-    // lightweight "last updated" without manual edits
     const now = new Date();
     document.getElementById("y").textContent = now.getFullYear();
     document.getElementById("d").textContent = now.toLocaleDateString(undefined, { year:"numeric", month:"short" });
