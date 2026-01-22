@@ -219,14 +219,34 @@
     .pubItem{
       padding-top: 2px;
     }
+
+    /* Updated publication header layout (title + italic status + [link]) */
+    .pubHeader{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: baseline;
+    }
     .pubTitle{
       font-weight: 800;
       font-size: 16px;
       line-height: 1.35;
-      margin: 0 0 4px;
+      margin: 0;
     }
+    .pubStatus{
+      font-style: italic;
+      font-weight: 500;      /* not bold */
+      color: var(--muted);
+      margin: 0;
+    }
+    .pubBracketLink{
+      font-weight: 700;
+      color: var(--link);
+      white-space: nowrap;
+    }
+
     .pubAuthors{
-      margin: 0 0 6px;
+      margin: 6px 0 6px;
       color: var(--muted);
       font-size: 14.6px;
     }
@@ -235,31 +255,6 @@
       font-size: 15px;
       color: var(--text);
     }
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 3px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(31,77,216,.18);
-      background: rgba(31,77,216,.06);
-      color: rgba(17,24,39,.92);
-      font-size: 12.8px;
-      font-weight: 800;
-      letter-spacing: .01em;
-      vertical-align: middle;
-      margin-left: 8px;
-      white-space: nowrap;
-    }
-    .tag strong{ font-weight: 900; }
-    .tag .venue{ color: rgba(17,24,39,.78); font-weight: 800; }
-
-    .pubLinks{
-      font-size: 14.4px;
-      color: var(--muted);
-      margin: 0 0 8px;
-    }
-    .pubLinks a{ font-weight: 700; }
 
     /* Footer */
     .footer{
@@ -315,9 +310,8 @@
             </svg>
           </a>
 
-          <!-- ORCID (improved icon) -->
+          <!-- ORCID -->
           <a class="iconLink" href="https://orcid.org/0000-0002-0770-2297" target="_blank" rel="noopener" aria-label="ORCID">
-            <!-- SimpleIcons-style ORCID glyph -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 0C5.372 0 0 5.372 0 12c0 6.627 5.372 12 12 12 6.627 0 12-5.373 12-12C24 5.372 18.627 0 12 0zm-4.5 5.2c.69 0 1.25.56 1.25 1.25S8.19 7.7 7.5 7.7s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25zM6.5 18.7V9.1h2V18.7h-2zm6.1-9.6c3.08 0 5.4 2 5.4 4.85 0 2.9-2.34 4.75-5.4 4.75H9.8V9.1h2.8zm-.15 7.8c1.9 0 3.25-1.1 3.25-2.95 0-1.9-1.35-2.95-3.25-2.95H11.8v5.9h.65z"/>
             </svg>
@@ -328,35 +322,36 @@
       <!-- MAIN CONTENT -->
       <main class="card main" aria-label="Main content">
 
-        <!-- ABOUT (replace your current #about section with this) -->
+        <!-- ABOUT -->
         <section id="about" class="section">
           <div class="h2">About</div>
-        
+
           <p class="p">
             I am a fifth-year Ph.D. candidate in Operations Management at UCLA Anderson School of Management.
             I received my B.Sc. in Industrial Engineering from Sharif University of Technology.
           </p>
-        
+
           <p class="p">
-            My research is motivated by a fundamental question: how can we operate critical infrastructure systems more safely and
-            fairly under uncertainty? Much of my work focuses on wildfire risk mitigation in power grids, where poor operational
-            decisions can have severe environmental and societal consequences.
+            My research is motivated by a fundamental question:
+            <strong>how can we operate critical infrastructure systems more safely and fairly under uncertainty?</strong>
+            Much of my work focuses on
+            <strong>wildfire risk mitigation in power grids</strong>,
+            where poor operational decisions can have severe environmental and societal consequences.
           </p>
-        
+
+
           <p class="p">
-            I develop large-scale optimization and learning-based methods for stochastic decision-making problems, with particular
-            interest in reinforcement learning and settings with limited or noisy feedback. Across projects, I aim to bridge theory
-            and practice by designing algorithms that are both analytically grounded and operationally relevant.
+            I develop large-scale optimization and learning-based methods for stochastic decision-making problems, with particular interest in reinforcement learning and settings with limited or noisy feedback.
+            Across projects, I aim to bridge theory and practice by designing algorithms that are both analytically grounded and operationally relevant.
           </p>
-        
+
           <p class="p muted">
             You can find my CV here:
             <a href="Abolfazl_CV.pdf" target="_blank" rel="noopener"><strong>Download CV (PDF)</strong></a>.
           </p>
         </section>
 
-
-        <!-- NEWS (bullets, no rectangles) -->
+        <!-- NEWS -->
         <section id="news" class="section">
           <div class="h2">News</div>
           <ul class="bullets">
@@ -374,19 +369,16 @@
 
             <!-- Paper 1 -->
             <li class="pubItem">
-              <div class="pubTitle">
-                Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan
-                <span class="tag"><strong>Under Review</strong> <span class="venue">· Operations Research</span></span>
+              <div class="pubHeader">
+                <div class="pubTitle">Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan</div>
+                <div class="pubStatus">under review at <span style="font-style: italic;">Operations Research</span></div>
+                <a class="pubBracketLink" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5369573" target="_blank" rel="noopener">[SSRN]</a>
               </div>
 
               <p class="pubAuthors"><em>with</em> A. Fattahi, S. Dasu, R. Ahmadi</p>
 
               <p class="pubDesc">
                 Optimization models for inspection and maintenance planning under uncertainty, with scalable solution methods for large infrastructure networks.
-              </p>
-
-              <p class="pubLinks">
-                Links: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5369573" target="_blank" rel="noopener">SSRN</a>
               </p>
 
               <ul class="bullets">
@@ -397,9 +389,12 @@
 
             <!-- Paper 2 -->
             <li class="pubItem">
-              <div class="pubTitle">
-                Fair Dynamic Load Control Scheduling under Stochastic Energy Demand
-                <span class="tag"><strong>In Preparation</strong> <span class="venue">· targeting Management Science</span></span>
+              <div class="pubHeader">
+                <div class="pubTitle">Fair Dynamic Load Control Scheduling under Stochastic Energy Demand</div>
+                <div class="pubStatus">preparing to submit to <span style="font-style: italic;">Management Science</span></div>
+                <a class="pubBracketLink"
+                   href="mailto:abolfazl.taghavi.phd@anderson.ucla.edu?subject=Request%3A%20Fair%20Dynamic%20Load%20Control%20Scheduling%20paper"
+                   rel="noopener">[Available on Request]</a>
               </div>
 
               <p class="pubAuthors"><em>with</em> A. Fattahi, S. Dasu, R. Ahmadi</p>
@@ -407,15 +402,13 @@
               <p class="pubDesc">
                 Scheduling frameworks that balance efficiency and fairness across customer groups, and quantify tradeoffs induced by operational flexibility constraints.
               </p>
-
-              <!-- bullets can be added later -->
             </li>
 
             <!-- Paper 3 -->
             <li class="pubItem">
-              <div class="pubTitle">
-                Learning to Prevent Utility-Caused Wildfires through Sequential Inspection and Maintenance
-                <span class="tag"><strong>Working Paper</strong></span>
+              <div class="pubHeader">
+                <div class="pubTitle">Learning to Prevent Utility-Caused Wildfires through Sequential Inspection and Maintenance</div>
+                <div class="pubStatus">working paper</div>
               </div>
 
               <p class="pubAuthors"><em>with</em> S. Dasu, R. Ahmadi</p>
@@ -423,8 +416,6 @@
               <p class="pubDesc">
                 Sequential decision-making with noisy signals and constrained actions; learning-based inspection strategies aimed at reducing catastrophic tail risk over time.
               </p>
-
-              <!-- bullets can be added later -->
             </li>
 
           </ul>
