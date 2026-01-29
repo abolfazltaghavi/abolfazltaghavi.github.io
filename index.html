@@ -66,9 +66,14 @@
     }
 
     @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-      .sidebar{ position:relative; top:auto; }
+      .grid{
+        display: flex;
+        flex-direction: column;
+      }
+      .main{ order: 1; }
+      .sidebar{ order: 2; position: relative; top: auto; }
     }
+
 
     .card{
       background: var(--panel);
