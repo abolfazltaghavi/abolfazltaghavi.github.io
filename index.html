@@ -5,306 +5,492 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Abolfazl Taghavi</title>
   <meta name="description" content="Abolfazl Taghavi — Ph.D. Candidate in Operations Management at UCLA Anderson. Research in sustainable operations, energy management, and wildfire mitigation." />
-  
   <link rel="canonical" href="https://abolfazltaghavi.github.io/" />
-
   <meta name="author" content="Abolfazl Taghavi" />
   <meta name="robots" content="index, follow" />
-  
   <meta property="og:title" content="Abolfazl Taghavi — Ph.D. Candidate, UCLA Anderson" />
   <meta property="og:description" content="Abolfazl Taghavi is a Ph.D. candidate in Operations Management at UCLA Anderson, working on optimization, energy systems, and wildfire risk mitigation." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://abolfazltaghavi.github.io/" />
 
-
-  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg: #fbfbfc;
-      --panel: #ffffff;
-      --text: #111827;
-      --muted: #4b5563;
-      --faint: #6b7280;
-      --border: rgba(17,24,39,.10);
-      --shadow: 0 14px 40px rgba(17,24,39,.08);
-      --radius: 18px;
-      --link: #1f4dd8;
-      --maxw: 1280px;
+    /* ─── Design Tokens ─── */
+    :root {
+      --navy:       #0f1f38;
+      --navy-mid:   #1a3254;
+      --gold:       #b5894a;
+      --gold-light: #d4a96a;
+      --bg:         #f7f5f0;
+      --panel:      #fffffe;
+      --text:       #1a1a1a;
+      --muted:      #4a4a4a;
+      --faint:      #7a7a7a;
+      --rule:       rgba(15,31,56,.12);
+      --rule-strong: rgba(15,31,56,.22);
+      --link:       #1a3254;
+      --radius-sm:  6px;
+      --radius:     12px;
+      --radius-lg:  20px;
+      --shadow-card: 0 2px 8px rgba(15,31,56,.06), 0 12px 40px rgba(15,31,56,.08);
+      --shadow-lift: 0 4px 16px rgba(15,31,56,.10), 0 20px 60px rgba(15,31,56,.12);
+      --maxw: 1240px;
+      --sidebar-w: 310px;
     }
 
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      background:
-        radial-gradient(1200px 500px at 20% -10%, rgba(31,77,216,.10), transparent 60%),
-        radial-gradient(900px 450px at 90% 10%, rgba(14,165,233,.10), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      line-height:1.55;
-    }
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
-    a{ color:var(--link); text-decoration:none; }
-    a:hover{ text-decoration:underline; }
-
-    .wrap{
-      max-width: var(--maxw);
-      margin: 44px auto;
-      padding: 0 18px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 340px 1fr;
-      gap: 22px;
-      align-items:start;
-    }
-
-    
-
-
-
-
-    .card{
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    /* Sidebar */
-    .sidebar{
-      position: sticky;
-      top: 20px;
-      padding: 22px;
-    }
-
-    .photo{
-      width: 132px;
-      height: 132px;
-      border-radius: 999px;
-      object-fit: cover;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 25px rgba(17,24,39,.10);
-      display:block;
-    }
-
-    .name{
-      font-family: "Source Serif 4", ui-serif, Georgia, serif;
-      font-size: 28px;
-      line-height: 1.12;
-      margin: 14px 0 6px;
-      letter-spacing: -0.02em;
-    }
-
-    .role{
-      margin:0;
-      color: var(--muted);
-      font-size: 14.5px;
-    }
-
-    .meta{
-      margin-top: 14px;
-      display:flex;
-      flex-direction:column;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .meta strong{ color: var(--text); font-weight:700; }
-
-    /* Text nav (not buttons) */
-    .nav{
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      font-size: 14.5px;
-    }
-    .nav a{
+    body {
+      background-color: var(--bg);
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
       color: var(--text);
-      font-weight: 600;
-      text-decoration: none;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .nav a:hover{
-      text-decoration: underline;
-      text-underline-offset: 3px;
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ─── Layout ─── */
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 48px 24px 80px;
     }
-    .nav .cvlink{
-      color: var(--link);
+
+    .grid {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ─── Sidebar ─── */
+    .sidebar {
+      position: sticky;
+      top: 24px;
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lift);
+      overflow: hidden;
+      color: rgba(255,255,255,.85);
+    }
+
+    .sidebar-top {
+      padding: 32px 28px 24px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      position: relative;
+    }
+
+    /* Decorative corner ornament */
+    .sidebar-top::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle at top right, rgba(181,137,74,.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .photo-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .photo {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 3px solid rgba(181,137,74,.45);
+      box-shadow: 0 0 0 1px rgba(181,137,74,.15), 0 8px 24px rgba(0,0,0,.3);
+    }
+
+    .name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px;
       font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -.01em;
+      margin-bottom: 6px;
     }
+
+    .role {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,.55);
+      line-height: 1.5;
+    }
+    .role strong {
+      color: rgba(255,255,255,.8);
+      font-weight: 500;
+    }
+
+    /* Gold divider */
+    .gold-rule {
+      width: 36px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+      margin: 16px 0;
+    }
+
+    .sidebar-mid {
+      padding: 20px 28px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .meta-row {
+      font-size: 13px;
+      line-height: 1.5;
+      color: rgba(255,255,255,.55);
+    }
+    .meta-row .label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .meta-row a {
+      color: rgba(255,255,255,.75);
+      font-size: 12.5px;
+      word-break: break-all;
+    }
+    .meta-row a:hover { color: #fff; }
 
     /* Icon links */
-    .icons{
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      flex-wrap: wrap;
-    }
-    .iconLink{
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.9);
-      display:grid;
-      place-items:center;
-      transition: transform .08s ease, box-shadow .08s ease, border-color .08s ease;
-    }
-    .iconLink:hover{
-      transform: translateY(-1px);
-      border-color: rgba(31,77,216,.25);
-      box-shadow: 0 12px 28px rgba(17,24,39,.10);
-      text-decoration:none;
-    }
-    .iconLink svg{
-      width: 18px;
-      height: 18px;
-      fill: #111827;
-      opacity: .85;
-    }
-
-    /* Main */
-    .main{ padding: 26px 26px; }
-    @media (max-width: 980px){ .main{ padding: 22px; } }
-
-    .section{
-      margin-top: 18px;
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
-    }
-    .section:first-child{
-      margin-top: 0;
-      padding-top: 0;
-      border-top: 0;
-    }
-
-    .h2{
-      font-size: 16px;
-      letter-spacing:.10em;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin: 0 0 12px;
-      font-weight: 800;
-    }
-
-    .p{
-      margin: 0 0 12px;
-      color: var(--text);
-      font-size: 15.5px;
-    }
-    .muted{ color: var(--muted); }
-
-    /* Bullets (News + Publication extras) */
-    .bullets{
-      margin: 0;
-      padding-left: 18px;
-      font-size: 15.2px;
-    }
-    .bullets li{ margin: 8px 0; }
-    .bullets .when{
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    /* Publications */
-    .pubList{
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display:flex;
-      flex-direction:column;
-      gap: 14px;
-    }
-    .pubItem{
-      padding-top: 2px;
-    }
-
-    /* Updated publication header layout (title + italic status + [link]) */
-    .pubHeader{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: baseline;
-    }
-    .pubTitle{
-      font-weight: 800;
-      font-size: 16px;
-      line-height: 1.35;
-      margin: 0;
-    }
-    .pubStatus{
-      font-style: italic;
-      font-weight: 500;      /* not bold */
-      color: var(--muted);
-      margin: 0;
-    }
-    .pubBracketLink{
-      font-weight: 700;
-      color: var(--link);
-      white-space: nowrap;
-    }
-
-    .pubAuthors{
-      margin: 6px 0 6px;
-      color: var(--muted);
-      font-size: 14.6px;
-    }
-    .pubDesc{
-      margin: 0 0 8px;
-      font-size: 15px;
-      color: var(--text);
-    }
-
-    /* Footer */
-    .footer{
-      margin-top: 26px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-      color: var(--faint);
-      font-size: 13px;
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
+    .icons {
+      padding: 18px 28px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex;
       gap: 10px;
     }
-    @media (max-width: 980px){
-    .grid{ grid-template-columns: 1fr; }
-  
-    .sidebar{
-      position: static;     /* <-- important: disables sticky on mobile */
-      top: auto;            /* not needed anymore, but harmless */
-      padding: 14px;
-      z-index: auto;        /* ensure it can't overlap main */
+    .iconLink {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06);
+      display: grid;
+      place-items: center;
+      transition: background .15s, border-color .15s, transform .15s;
     }
-  
-    /* (optional but recommended) avoid any strange overlap */
-    .main{ margin-top: 0; }
-  
-    /* make sidebar feel like a compact header */
-    .photo{ width: 86px; height: 86px; }
-    .name{ font-size: 22px; margin: 10px 0 4px; }
-    .role{ font-size: 13.5px; }
-    .meta{ font-size: 13.5px; gap: 6px; margin-top: 10px; }
-    .nav{ gap: 8px; font-size: 14px; margin-top: 12px; padding-top: 12px; }
-    .icons{ margin-top: 12px; padding-top: 12px; }
-    .iconLink{ width: 34px; height: 34px; }
+    .iconLink:hover {
+      background: rgba(181,137,74,.25);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    .iconLink svg {
+      width: 16px; height: 16px;
+      fill: rgba(255,255,255,.75);
+    }
+
+    /* Navigation */
+    .sidebar-nav {
+      padding: 20px 28px 28px;
+    }
+    .nav-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .nav a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: rgba(255,255,255,.65);
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      transition: background .12s, color .12s, padding-left .12s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav a::before {
+      content: '';
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      flex-shrink: 0;
+      transition: opacity .12s;
+    }
+    .nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,.07);
+      padding-left: 14px;
+      text-decoration: none;
+    }
+    .nav a:hover::before { opacity: 1; }
+    .nav .cv-link {
+      margin-top: 10px;
+      color: var(--gold-light);
+      border: 1px solid rgba(181,137,74,.35);
+      background: rgba(181,137,74,.08);
+      justify-content: center;
+      font-weight: 600;
+    }
+    .nav .cv-link:hover {
+      background: rgba(181,137,74,.2);
+      border-color: var(--gold);
+      padding-left: 10px;
+    }
+    .nav .cv-link::before { display: none; }
+
+    /* ─── Main Panel ─── */
+    .main {
+      background: var(--panel);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    /* Section header strip */
+    .section {
+      padding: 40px 44px;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp .5s ease forwards;
+    }
+    .section:last-child { border-bottom: none; }
+    .section:nth-child(1) { animation-delay: .05s; }
+    .section:nth-child(2) { animation-delay: .12s; }
+    .section:nth-child(3) { animation-delay: .19s; }
+    .section:nth-child(4) { animation-delay: .26s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .section-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--navy-mid);
+      background: rgba(15,31,56,.06);
+      padding: 4px 10px;
+      border-radius: 4px;
+      border-left: 3px solid var(--navy-mid);
+    }
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* About */
+    .about-text {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 16px;
+    }
+    .about-text:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--navy); font-weight: 600; }
+    .about-text .highlight {
+      font-style: italic;
+      color: var(--navy-mid);
+    }
+    .cv-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy-mid);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 1px;
+    }
+    .cv-inline:hover { color: var(--gold); text-decoration: none; }
+
+    /* News */
+    .news-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .news-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+    .news-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .news-item:first-child { padding-top: 0; }
+    .news-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--faint);
+      padding-top: 2px;
+      white-space: nowrap;
+    }
+    .news-text { color: var(--muted); }
+    .news-text strong { color: var(--text); font-weight: 600; }
+
+    /* Publications */
+    .pub-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .pub-item {
+      padding: 22px 22px 22px 26px;
+      border-left: 3px solid var(--navy-mid);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      background: rgba(15,31,56,.025);
+      transition: border-color .2s, background .2s, box-shadow .2s;
+      position: relative;
+    }
+    .pub-item:hover {
+      border-color: var(--gold);
+      background: rgba(181,137,74,.04);
+      box-shadow: 0 2px 20px rgba(181,137,74,.08);
+    }
+
+    .pub-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 5px;
+    }
+    .pub-status-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .pub-status {
+      font-style: italic;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .ssrn-bracket {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--link);
+    }
+    .ssrn-bracket:hover { text-decoration: underline; }
+
+    .pub-meta {
+      font-size: 13.5px;
+      color: var(--faint);
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .pub-meta .coauthors { font-weight: 500; }
+
+    .pub-desc {
+      font-size: 14.5px;
+      color: #333;
+      line-height: 1.7;
+      margin-bottom: 12px;
     }
 
 
-    
+
+    .pub-bullets {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .pub-bullets li {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .pub-bullets li a {
+      color: var(--link);
+    }
+
+    /* Contact */
+    .contact-text {
+      font-size: 15.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .email-display {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 2px;
+    }
+    .email-display:hover { color: var(--gold); text-decoration: none; }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 32px;
+      padding: 0 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      color: var(--faint);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .sidebar { position: static; border-radius: var(--radius); }
+      .sidebar-top { padding: 24px 22px 18px; }
+      .sidebar-mid, .sidebar-nav, .icons { padding-left: 22px; padding-right: 22px; }
+      .photo { width: 80px; height: 80px; }
+      .name { font-size: 20px; }
+      .section { padding: 28px 24px; }
+      .news-item { grid-template-columns: 1fr; gap: 4px; }
+      .news-date { font-size: 11px; }
+      .pub-top { flex-direction: column; }
+      .site-footer { flex-direction: column; gap: 4px; text-align: center; }
+    }
   </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -313,10 +499,7 @@
     "url": "https://abolfazltaghavi.github.io/",
     "image": "https://abolfazltaghavi.github.io/assets/profile.jpg",
     "email": "mailto:abolfazl.taghavi.phd@anderson.ucla.edu",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "UCLA Anderson School of Management"
-    },
+    "affiliation": { "@type": "Organization", "name": "UCLA Anderson School of Management" },
     "jobTitle": "Ph.D. Candidate in Operations Management",
     "sameAs": [
       "https://scholar.google.com/citations?user=DlNroigAAAAJ",
@@ -325,187 +508,222 @@
     ]
   }
   </script>
-
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="grid">
+<div class="wrap">
+  <div class="grid">
 
-      <!-- LEFT SIDEBAR -->
-      <aside class="card sidebar" aria-label="Sidebar">
-        <img class="photo" src="assets/profile.jpg" alt="Abolfazl Taghavi headshot" />
+    <!-- ═══ SIDEBAR ═══ -->
+    <aside class="sidebar" aria-label="Profile">
 
+      <div class="sidebar-top">
+        <div class="photo-wrap">
+          <img class="photo" src="assets/profile.jpg" alt="Abolfazl Taghavi" />
+        </div>
         <div class="name">Abolfazl Taghavi</div>
-        <p class="role">Ph.D. Candidate · Operations Management<br/>UCLA Anderson School of Management</p>
+        <div class="gold-rule"></div>
+        <p class="role">
+          <strong>Ph.D. Candidate</strong><br>
+          Operations Management<br>
+          UCLA Anderson School of Management
+        </p>
+      </div>
 
-        <div class="icons" aria-label="Links">
-          <!-- Google Scholar -->
-          <a class="iconLink" href="https://scholar.google.com/citations?user=DlNroigAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 3 1 8l11 5 9-4.09V17h2V8L12 3zm0 12L3 10.91V14c0 2.76 4.03 5 9 5s9-2.24 9-5v-3.09L12 15z"/>
-            </svg>
-          </a>
-
-          <!-- LinkedIn -->
-          <a class="iconLink" href="https://www.linkedin.com/in/abolfazl-taghavi-51929a188" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 23h5V7H0v16zM8 7h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6C22.4 6.6 24 9 24 13.3V23h-5v-8.2c0-1.96-.03-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.33V23H8V7z"/>
-            </svg>
-          </a>
-
-          <!-- ORCID -->
-          <a class="iconLink" href="https://orcid.org/0000-0002-0770-2297" target="_blank" rel="noopener" aria-label="ORCID">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 0C5.372 0 0 5.372 0 12c0 6.627 5.372 12 12 12 6.627 0 12-5.373 12-12C24 5.372 18.627 0 12 0zm-4.5 5.2c.69 0 1.25.56 1.25 1.25S8.19 7.7 7.5 7.7s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25zM6.5 18.7V9.1h2V18.7h-2zm6.1-9.6c3.08 0 5.4 2 5.4 4.85 0 2.9-2.34 4.75-5.4 4.75H9.8V9.1h2.8zm-.15 7.8c1.9 0 3.25-1.1 3.25-2.95 0-1.9-1.35-2.95-3.25-2.95H11.8v5.9h.65z"/>
-            </svg>
-          </a>
+      <div class="sidebar-mid">
+        <div class="meta-row">
+          <span class="label">Email</span>
+          <a href="mailto:abolfazl.taghavi.phd@anderson.ucla.edu">abolfazl.taghavi.phd@<br>anderson.ucla.edu</a>
         </div>
-
-        <div class="meta">
-          <div><strong>Email:</strong> <a href="mailto:abolfazl.taghavi.phd@anderson.ucla.edu">abolfazl.taghavi.phd@anderson.ucla.edu</a></div>
-          <div><strong>Research Interest:</strong> Sustainable Operations, Wildfire Mitigation, Energy Managemnt.</div>
+        <div class="meta-row">
+          <span class="label">Research Interests</span>
+          Sustainable Operations · Wildfire Mitigation · Energy Management
         </div>
+      </div>
 
-        <nav class="nav" aria-label="Page navigation">
+      <div class="icons" aria-label="Profiles">
+        <!-- Google Scholar -->
+        <a class="iconLink" href="https://scholar.google.com/citations?user=DlNroigAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3 1 8l11 5 9-4.09V17h2V8L12 3zm0 12L3 10.91V14c0 2.76 4.03 5 9 5s9-2.24 9-5v-3.09L12 15z"/>
+          </svg>
+        </a>
+        <!-- LinkedIn -->
+        <a class="iconLink" href="https://www.linkedin.com/in/abolfazl-taghavi-51929a188" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 23h5V7H0v16zM8 7h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6C22.4 6.6 24 9 24 13.3V23h-5v-8.2c0-1.96-.03-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.33V23H8V7z"/>
+          </svg>
+        </a>
+        <!-- ORCID -->
+        <a class="iconLink" href="https://orcid.org/0000-0002-0770-2297" target="_blank" rel="noopener" aria-label="ORCID">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 0C5.372 0 0 5.372 0 12c0 6.627 5.372 12 12 12 6.627 0 12-5.373 12-12C24 5.372 18.627 0 12 0zm-4.5 5.2c.69 0 1.25.56 1.25 1.25S8.19 7.7 7.5 7.7s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25zM6.5 18.7V9.1h2V18.7h-2zm6.1-9.6c3.08 0 5.4 2 5.4 4.85 0 2.9-2.34 4.75-5.4 4.75H9.8V9.1h2.8zm-.15 7.8c1.9 0 3.25-1.1 3.25-2.95 0-1.9-1.35-2.95-3.25-2.95H11.8v5.9h.65z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="sidebar-nav">
+        <div class="nav-label">Navigate</div>
+        <nav class="nav" aria-label="Page sections">
           <a href="#about">About</a>
           <a href="#news">News</a>
           <a href="#publications">Publications</a>
           <a href="#contact">Contact</a>
-          <a class="cvlink" href="Abolfazl_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+          <a class="cv-link" href="Abolfazl_CV.pdf" target="_blank" rel="noopener">↓ Download CV (PDF)</a>
         </nav>
+      </div>
+    </aside>
 
-        
-      </aside>
+    <!-- ═══ MAIN ═══ -->
+    <main class="main" aria-label="Main content">
 
-      <!-- MAIN CONTENT -->
-      <main class="card main" aria-label="Main content">
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="section-header">
+          <div class="section-label">About</div>
+          <div class="section-rule"></div>
+        </div>
 
-        <!-- ABOUT -->
-        <section id="about" class="section">
-          <div class="h2">About</div>
+        <p class="about-text">
+          I am a fifth-year Ph.D. candidate in Operations Management at UCLA Anderson School of Management.
+          I received my B.Sc. in Industrial Engineering from Sharif University of Technology.
+        </p>
 
-          <p class="p">
-            I am a fifth-year Ph.D. candidate in Operations Management at UCLA Anderson School of Management.
-            I received my B.Sc. in Industrial Engineering from Sharif University of Technology.
-          </p>
+        <p class="about-text">
+          My research is motivated by a fundamental question:
+          <strong>how can we operate critical infrastructure systems more safely and fairly under uncertainty?</strong>
+          Much of my work focuses on <span class="highlight">wildfire risk mitigation in power grids</span>,
+          where poor operational decisions can have severe environmental and societal consequences.
+        </p>
 
-          <p class="p">
-            My research is motivated by a fundamental question:
-            <strong>how can we operate critical infrastructure systems more safely and fairly under uncertainty?</strong>
-            Much of my work focuses on
-            <strong>wildfire risk mitigation in power grids</strong>,
-            where poor operational decisions can have severe environmental and societal consequences.
-          </p>
+        <p class="about-text">
+          I develop large-scale optimization and learning-based methods for stochastic decision-making problems,
+          with particular interest in reinforcement learning and settings with limited or noisy feedback.
+          Across projects, I aim to bridge theory and practice by designing algorithms that are both
+          analytically grounded and operationally relevant.
+        </p>
 
+        <p class="about-text" style="margin-top:8px;">
+          <a class="cv-inline" href="Abolfazl_CV.pdf" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Curriculum Vitae
+          </a>
+        </p>
+      </section>
 
-          <p class="p">
-            I develop large-scale optimization and learning-based methods for stochastic decision-making problems, with particular interest in reinforcement learning and settings with limited or noisy feedback.
-            Across projects, I aim to bridge theory and practice by designing algorithms that are both analytically grounded and operationally relevant.
-          </p>
+      <!-- NEWS -->
+      <section id="news" class="section">
+        <div class="section-header">
+          <div class="section-label">News</div>
+          <div class="section-rule"></div>
+        </div>
 
-          <p class="p muted">
-            You can find my CV here:
-            <a href="Abolfazl_CV.pdf" target="_blank" rel="noopener"><strong>Download CV (PDF)</strong></a>.
-          </p>
-        </section>
+        <ul class="news-list">
+          <li class="news-item">
+            <span class="news-date">Mar 27, 2026</span>
+            <span class="news-text">Selected to participate in the <strong>Rising Stars Workshop</strong> at the University of Michigan (29 selected out of 132 applicants).</span>
+          </li>
+          <li class="news-item">
+            <span class="news-date">Mar 23–27, 2026</span>
+            <span class="news-text">Presenting at the <strong>4th International Smoke Symposium</strong> — Tallahassee, FL.</span>
+          </li>
+          <li class="news-item">
+            <span class="news-date">May 7–11, 2026</span>
+            <span class="news-text">Presenting at the <strong>36th Annual POMS Conference</strong> — Reno, NV.</span>
+          </li>
+        </ul>
+      </section>
 
-        <!-- NEWS -->
-        <section id="news" class="section">
-          <div class="h2">News</div>
-          <ul class="bullets">
-            <li><span class="when">Mar 27, 2026</span> — Selected to participate in the Rising Stars Workshop at the University of Michigan (29 selected out of 132 applicants).</li>
-            <li><span class="when">Mar 23-27, 2026</span> — I will present at the <strong>4th International Smoke Symposium</strong> (Tallahassee, FL).</li>
-            <li><span class="when">May 7–11, 2026</span> — I will present at the <strong>36th Annual POMS Conference</strong> (Reno, NV).</li>
-          </ul>
-        </section>
+      <!-- PUBLICATIONS -->
+      <section id="publications" class="section">
+        <div class="section-header">
+          <div class="section-label">Publications</div>
+          <div class="section-rule"></div>
+        </div>
 
-        <!-- PUBLICATIONS -->
-        <section id="publications" class="section">
-          <div class="h2">Publications</div>
+        <ul class="pub-list">
 
-          <ul class="pubList">
+          <!-- Paper 1 -->
+          <li class="pub-item">
+            <div class="pub-title">Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan</div>
+            <div class="pub-status-line">
+              <span class="pub-status">Under review at <em>Operations Research</em></span>
+              <a class="ssrn-bracket" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5369573" target="_blank" rel="noopener">[SSRN]</a>
+            </div>
+            <p class="pub-meta"><em>with</em> <span class="coauthors">A. Fattahi, S. Dasu, R. Ahmadi</span></p>
+            <p class="pub-desc">
+              We design an optimal inspection and maintenance plan for large power grids under uncertainty,
+              capturing correlated wildfire risk and operational capacity constraints. Using data from one of
+              California's largest utility companies, we show how principled planning can substantially reduce
+              the damage from catastrophic wildfires.
+            </p>
+            <ul class="pub-bullets">
+              <li>Media coverage: <a href="https://anderson-review.ucla.edu/a-more-effective-way-to-spot-potential-wildfire-origins-in-the-electric-grid/" target="_blank" rel="noopener">UCLA Anderson Review</a></li>
+              <li>Finalist, POMS College of SCM Best Student Paper Award 2026</li>
+              <li>Accepted for Early-Career Sustainable Operations Workshop (Flash Talk), 2026; <strong>Best Flash Talk Award</strong></li>
+            </ul>
+          </li>
 
-            <!-- Paper 1 -->
-            <li class="pubItem">
-              <div class="pubHeader">
-                <div class="pubTitle">Preventing Catastrophic Wildfires: Annual Grid Inspection and Maintenance Plan</div>
-                <div class="pubStatus">Under review at <span style="font-style: italic;">Operations Research</span></div>
-                <a class="pubBracketLink" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5369573" target="_blank" rel="noopener">[SSRN]</a>
-              </div>
+          <!-- Paper 2 -->
+          <li class="pub-item">
+            <div class="pub-title">Fair and Flexible Scheduling for Dynamic Energy Load Control under Stochastic Demand</div>
+            <div class="pub-status-line">
+              <span class="pub-status">Under review at <em>Management Science</em></span>
+              <a class="ssrn-bracket" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6293323" target="_blank" rel="noopener">[SSRN]</a>
+            </div>
+            <p class="pub-meta"><em>with</em> <span class="coauthors">A. Fattahi, S. Dasu, R. Ahmadi</span></p>
+            <p class="pub-desc">
+              We formulate a stochastic dynamic program for direct load control that jointly models fairness
+              over time and operational flexibility in admissible call lengths. We develop a scalable
+              aggregation–disaggregation method with provable guarantees and quantify the efficiency impacts
+              of fairness and flexibility using high-resolution CAISO demand data.
+            </p>
+          </li>
 
-              <p class="pubAuthors"><em>with</em> A. Fattahi, S. Dasu, R. Ahmadi</p>
+          <!-- Paper 3 -->
+          <li class="pub-item">
+            <div class="pub-title">Learning to Prevent Utility-Caused Wildfires through Sequential Inspection and Maintenance</div>
+            <div class="pub-status-line">
+              <span class="pub-status">Working paper</span>
+            </div>
+            <p class="pub-meta"><em>with</em> <span class="coauthors">S. Dasu, R. Ahmadi</span></p>
+            <p class="pub-desc">
+              We study sequential inspection and maintenance when ignition risk is learned from noisy inspection
+              signals through a shared statistical model. We propose a pessimistic index policy that targets
+              inspections and maintenance using uncertainty-aware risk estimates, and evaluate its performance
+              against natural baselines.
+            </p>
+          </li>
 
-              <p class="pubDesc">
-              We design an optimal inspection and maintenance plan for large power grids under uncertainty, capturing correlated wildfire risk and operational capacity constraints. Using data from one of California's largest utility companies, we show how principled planning can substantially reduce the damage from catastrophic wildfires.
-              </p>
+        </ul>
+      </section>
 
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <div class="section-header">
+          <div class="section-label">Contact</div>
+          <div class="section-rule"></div>
+        </div>
+        <p class="contact-text">The best way to reach me is by email.</p>
+        <a class="email-display" href="mailto:abolfazl.taghavi.phd@anderson.ucla.edu">
+          abolfazl.taghavi.phd@anderson.ucla.edu
+        </a>
+      </section>
 
-
-              <ul class="bullets">
-                <li>Media coverage: <a href="https://anderson-review.ucla.edu/a-more-effective-way-to-spot-potential-wildfire-origins-in-the-electric-grid/" target="_blank" rel="noopener">UCLA Anderson Review</a></li>
-                <li>Finalist, POMS College of SCM Best Student Paper Award 2026</li>
-                <li>Accepted for Early-Career Sustainable Operations Workshop (Flash Talk), 2026; <strong>Best Flash Talk Award</strong></li>
-              </ul>
-            </li>
-
-            <!-- Paper 2 -->
-            <li class="pubItem">
-              <div class="pubHeader">
-                <div class="pubTitle">Fair and Flexible Scheduling for Dynamic Energy Load Control under Stochastic Demand</div>
-                <div class="pubStatus"> Under review at <span style="font-style: italic;">Management Science</span></div>
-                <a class="pubBracketLink" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6293323" target="_blank" rel="noopener">[SSRN]</a>
-              </div>
-
-              <p class="pubAuthors"><em>with</em> A. Fattahi, S. Dasu, R. Ahmadi</p>
-
-              <p class="pubDesc">
-                We formulate a stochastic dynamic program for direct load control that jointly models fairness over time and operational flexibility in admissible call lengths. We develop a scalable aggregation–disaggregation method with provable guarantees and quantify the efficiency impacts of fairness and flexibility using high-resolution CAISO demand data.
-              </p>
-
-            </li>
-
-            <!-- Paper 3 -->
-            <li class="pubItem">
-              <div class="pubHeader">
-                <div class="pubTitle">Learning to Prevent Utility-Caused Wildfires through Sequential Inspection and Maintenance</div>
-                <div class="pubStatus">working paper</div>
-              </div>
-
-              <p class="pubAuthors"><em>with</em> S. Dasu, R. Ahmadi</p>
-
-              <p class="pubDesc">
-                We study sequential inspection and maintenance when ignition risk is learned from noisy inspection signals through a shared statistical model. We propose a pessimistic index policy that targets inspections and maintenance using uncertainty-aware risk estimates, and evaluate its performance against natural baselines.
-              </p>
-
-            </li>
-
-          </ul>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact" class="section">
-          <div class="h2">Contact</div>
-          <p class="p">
-            The best way to reach me is by email:
-            <strong><a href="mailto:abolfazl.taghavi.phd@anderson.ucla.edu">abolfazl.taghavi.phd@anderson.ucla.edu</a></strong>.
-          </p>
-
-          <div class="footer">
-            <div>© <span id="y"></span> Abolfazl Taghavi</div>
-            <div class="muted">Last updated: <span id="d"></span></div>
-          </div>
-        </section>
-
-      </main>
-
-    </div>
+    </main>
   </div>
 
-  <script>
-    const now = new Date();
-    document.getElementById("y").textContent = now.getFullYear();
-    document.getElementById("d").textContent = now.toLocaleDateString(undefined, { year:"numeric", month:"short" });
-  </script>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span>© <span id="y"></span> Abolfazl Taghavi</span>
+    <span>Last updated <span id="d"></span></span>
+  </footer>
+</div>
+
+<script>
+  const now = new Date();
+  document.getElementById("y").textContent = now.getFullYear();
+  document.getElementById("d").textContent = now.toLocaleDateString(undefined, { year:"numeric", month:"long" });
+</script>
 </body>
 </html>
